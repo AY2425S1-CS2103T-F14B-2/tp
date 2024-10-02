@@ -11,7 +11,7 @@
         "zee": "Zee",
         "chong-yi": "Chong Yi",
         "maximus-tan": "Maximus Tan",
-        "james-doe": "James Doe"
+        "divya-lath": "Divya Lath"
       },
       "headingKeywords": {}
     },
@@ -145,6 +145,23 @@
     {
       "src": "team/chongyi.md",
       "headings": {},
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/divya.md",
+      "headings": {
+        "tahub-contacts": "TAHub Contacts",
+        "given-below-are-my-contributions-to-the-project": "Given below are my contributions to the project.",
+        "1-new-feature": "1.New Feature:",
+        "2-code-contributed-reposense-link": "2.Code contributed: RepoSense link",
+        "3-project-management": "3.Project management:",
+        "4-enhancements-to-existing-features": "4.Enhancements to existing features:",
+        "5-documentation": "5.Documentation:",
+        "6-community": "6.Community:",
+        "7-tools": "7.Tools:",
+        "8-design": "8.Design:",
+        "9-created-logo-and-icon-designs": "9.Created logo and icon designs."
+      },
       "headingKeywords": {}
     },
     {
