@@ -50,7 +50,7 @@ class StudentCourseAssociationTest {
                 new HashSet<>()
         );
         Course course = new Course("CS2102", "Database Systems");
-        Recitation recitation = new Recitation("R1", course);
+        tahub.contacts.model.courseclass.recitation.Recitation recitation = new Recitation("R1", course);
         StudentCourseAssociation sca = new StudentCourseAssociation(student, course, recitation);
 
         assertSame(student, sca.getStudent());
@@ -125,7 +125,7 @@ class StudentCourseAssociationTest {
                 new HashSet<>()
         );
         Course course = new Course("IS1105", "Strategic Financial Management");
-        Recitation recitation = new Recitation("R2", course);
+        tahub.contacts.model.courseclass.recitation.Recitation recitation = new Recitation("R2", course);
         StudentCourseAssociation sca = new StudentCourseAssociation(student, course, recitation);
 
         assertSame(student, sca.getStudent());
@@ -161,7 +161,7 @@ class StudentCourseAssociationTest {
                 new HashSet<>()
         );
         Course course = new Course("IS1131", "Financial Management");
-        Recitation recitation = new Recitation("R3", course);
+        tahub.contacts.model.courseclass.recitation.Recitation recitation = new Recitation("R3", course);
         StudentCourseAssociation sca = new StudentCourseAssociation(student, course, recitation);
 
         Course retrievedCourse = sca.getCourse();
@@ -197,7 +197,7 @@ class StudentCourseAssociationTest {
                 new HashSet<>()
         );
         Course course = new Course("IS2102", "Financial Management");
-        Recitation recitation = new Recitation("R4", course);
+        tahub.contacts.model.courseclass.recitation.Recitation recitation = new Recitation("R4", course);
         StudentCourseAssociation sca = new StudentCourseAssociation(student, course, recitation);
 
         sca.addGrade("Midterm", 85.0);

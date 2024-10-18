@@ -23,7 +23,7 @@ public class StudentCourseAssociation {
      * Represents a Recitation
      * May be null, if this TA is not the student's recitation TA.
      * */
-    private Recitation recitation = null;
+    private tahub.contacts.model.courseclass.recitation.Recitation recitation = null;
     private GradingSystem grades;
 
     /**
