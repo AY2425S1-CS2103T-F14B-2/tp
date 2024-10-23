@@ -60,85 +60,85 @@ public class StudentCourseAssociationList implements Iterable<StudentCourseAssoc
      * Returns the SCA list of a student.
      */
     public ObservableList<StudentCourseAssociation> get(Person student) {
-        ObservableList<StudentCourseAssociation> studentSCAs = FXCollections.observableArrayList();
+        ObservableList<StudentCourseAssociation> studentScas = FXCollections.observableArrayList();
         for (StudentCourseAssociation sca : internalList) {
             if (sca.getStudent().equals(student)) {
-                studentSCAs.add(sca);
+                studentScas.add(sca);
             }
         }
-        return studentSCAs;
+        return studentScas;
     }
 
     /**
      * Returns the SCA list of a course.
      */
     public ObservableList<StudentCourseAssociation> get(Course course) {
-        ObservableList<StudentCourseAssociation> courseSCAs = FXCollections.observableArrayList();
+        ObservableList<StudentCourseAssociation> courseScas = FXCollections.observableArrayList();
         for (StudentCourseAssociation sca : internalList) {
             if (sca.getCourse().equals(course)) {
-                courseSCAs.add(sca);
+                courseScas.add(sca);
             }
         }
-        return courseSCAs;
+        return courseScas;
     }
 
     /**
      * Returns the SCA list of a student in a course.
      */
     public ObservableList<StudentCourseAssociation> get(Person student, Course course) {
-        ObservableList<StudentCourseAssociation> studentCourseSCAs = FXCollections.observableArrayList();
+        ObservableList<StudentCourseAssociation> studentCourseScas = FXCollections.observableArrayList();
         for (StudentCourseAssociation sca : internalList) {
             if (sca.getStudent().equals(student) && sca.getCourse().equals(course)) {
-                studentCourseSCAs.add(sca);
+                studentCourseScas.add(sca);
             }
         }
-        return studentCourseSCAs;
+        return studentCourseScas;
     }
 
     /**
      * Returns the SCA list of a course in a tutorial.
      */
     public ObservableList<StudentCourseAssociation> get(Course course, Tutorial tutorial) {
-        ObservableList<StudentCourseAssociation> courseTutorialSCAs = FXCollections.observableArrayList();
+        ObservableList<StudentCourseAssociation> courseTutorialScas = FXCollections.observableArrayList();
         for (StudentCourseAssociation sca : internalList) {
             if (sca.getCourse().equals(course) && sca.getTutorial().equals(tutorial)) {
-                courseTutorialSCAs.add(sca);
+                courseTutorialScas.add(sca);
             }
         }
-        return courseTutorialSCAs;
+        return courseTutorialScas;
     }
 
     /**
      * Returns the SCA list of a student by matric number.
      */
     public ObservableList<StudentCourseAssociation> getByMatric(String matricNumber) {
-        ObservableList<StudentCourseAssociation> studentSCAs = FXCollections.observableArrayList();
+        ObservableList<StudentCourseAssociation> studentScas = FXCollections.observableArrayList();
         for (StudentCourseAssociation sca : internalList) {
             if (sca.getStudent().getMatricNumber().equals(matricNumber)) {
-                studentSCAs.add(sca);
+                studentScas.add(sca);
             }
         }
-        return studentSCAs;
+        return studentScas;
     }
 
     /**
-     * Replaces the SCA {@code target} in the list with {@code editedSCA}.
+     * Replaces the SCA {@code target} in the list with {@code editedSca}.
      * {@code target} must exist in the list.
-     * The SCA identity of {@code editedSCA} must not be the same as another existing SCA in the list.
+     * The SCA identity of {@code editedSca} must not be the same as another existing SCA in the list.
      */
-    public void set(StudentCourseAssociation target, StudentCourseAssociation editedSCA) {
-        requireAllNonNull(target, editedSCA);
+    public void set(StudentCourseAssociation target, StudentCourseAssociation editedSca) {
+        requireAllNonNull(target, editedSca);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new RuntimeException("SCA not found in list");
         }
 
-        if (!target.equals(editedSCA) && contains(editedSCA)) {
+        if (!target.equals(editedSca) && contains(editedSca)) {
             throw new RuntimeException("Duplicate SCA detected");
         }
 
-        internalList.set(index, editedSCA);
+        internalList.set(index, editedSca);
     }
 
     public void set(StudentCourseAssociationList replacement) {
