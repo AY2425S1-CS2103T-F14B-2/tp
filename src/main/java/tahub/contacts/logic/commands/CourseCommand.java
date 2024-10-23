@@ -42,8 +42,8 @@ public class CourseCommand extends Command {
         }
 
         model.addCourse(toAdd);
-        model.addSca(new StudentCourseAssociation(model.getFilteredPersonList().get(0), toAdd,
-                new Tutorial("T01", toAdd)));
+       // model.addSca(new StudentCourseAssociation(model.getFilteredPersonList().get(0), toAdd,
+         //       new Tutorial("T01", toAdd)));
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
