@@ -14,6 +14,7 @@ import tahub.contacts.commons.core.LogsCenter;
 import tahub.contacts.model.course.Course;
 import tahub.contacts.model.course.UniqueCourseList;
 import tahub.contacts.model.person.Person;
+import tahub.contacts.model.studentcourseassociation.StudentCourseAssociation;
 import tahub.contacts.model.studentcourseassociation.StudentCourseAssociationList;
 
 /**
@@ -176,6 +177,41 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Student Course Association List Accessors ==========================================================
+
+    @Override
+    public Path getScaListFilePath() {
+        return userPrefs.getCourseListFilePath();
+    }
+
+    @Override
+    public void setScaListFilePath(Path courseListFilePath) {
+        requireNonNull(courseListFilePath);
+        userPrefs.setCourseListFilePath(courseListFilePath);
+    }
+
+    @Override
+    public boolean hasSca(StudentCourseAssociation sca) {
+        requireNonNull(sca);
+        return scaList.has(sca);
+    }
+
+    @Override
+    public void deleteSca(StudentCourseAssociation target) {
+        scaList.remove(target);
+    }
+
+    @Override
+    public void addSca(StudentCourseAssociation sca) {
+        scaList.add(sca);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public StudentCourseAssociationList getScaList() {
+        return scaList;
     }
 
     @Override
