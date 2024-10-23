@@ -114,7 +114,7 @@ public class StorageManager implements Storage {
 
     //===== student course association list methods =====
     @Override
-    public Path getStudentCourseAssociationListFilePath() {
+    public Path getScaListFilePath() {
         return scaListStorage.getScaListFilePath();
     }
 

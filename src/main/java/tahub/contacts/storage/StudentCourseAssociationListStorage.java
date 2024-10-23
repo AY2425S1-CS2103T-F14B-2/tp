@@ -19,5 +19,5 @@ public interface StudentCourseAssociationListStorage {
 
     void saveScaList(StudentCourseAssociationList scaList, Path filePath) throws IOException;
 
-    Path getStudentCourseAssociationListFilePath();
+    Path getScaListFilePath();
 }

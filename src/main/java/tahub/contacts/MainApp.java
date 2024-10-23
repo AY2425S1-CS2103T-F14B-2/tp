@@ -65,7 +65,7 @@ public class MainApp extends Application {
         JsonUniqueCourseListStorage courseListStorage =
                 new JsonUniqueCourseListStorage(userPrefs.getCourseListFilePath());
         JsonStudentCourseAssociationListStorage scaListStorage =
-                new JsonStudentCourseAssociationListStorage(userPrefs.getCourseListFilePath());
+                new JsonStudentCourseAssociationListStorage(userPrefs.getScaListFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage, courseListStorage, scaListStorage);
 
         model = initModelManager(storage, userPrefs);
@@ -116,14 +116,14 @@ public class MainApp extends Application {
         Optional<StudentCourseAssociationList> scaListOptional;
         StudentCourseAssociationList initialScaList;
         try {
-            scaListOptional = storage.readScaList(userPrefs.getCourseListFilePath());
+            scaListOptional = storage.readScaList(userPrefs.getScaListFilePath());
             if (scaListOptional.isEmpty()) {
-                logger.info("Creating a new sca list in the " + storage.getCourseListFilePath()
+                logger.info("Creating a new sca list in the " + storage.getScaListFilePath()
                         + " file, populated with a sample SCA list.");
             }
             initialScaList = scaListOptional.orElseGet(SampleDataUtil::getSampleScaList);
         } catch (DataLoadingException e) {
-            logger.warning("SCA list file at " + storage.getCourseListFilePath() + " could not be loaded."
+            logger.warning("SCA list file at " + storage.getScaListFilePath() + " could not be loaded."
                     + " Will be starting with an empty sca list.");
             initialScaList = new StudentCourseAssociationList();
         }

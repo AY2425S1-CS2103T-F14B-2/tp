@@ -2,6 +2,7 @@ package tahub.contacts.storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,7 +20,7 @@ class JsonSerializableStudentCourseAssociationList {
 
     public static final String MESSAGE_DUPLICATE_SCA = "SCA list contains duplicate item(s).";
 
-    private final List<JsonAdaptedStudentCourseAssociation> courses = new ArrayList<>();
+    private final List<JsonAdaptedStudentCourseAssociation> scas = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableUniqueCourseList} with the given sca.
@@ -27,7 +28,7 @@ class JsonSerializableStudentCourseAssociationList {
     @JsonCreator
     public JsonSerializableStudentCourseAssociationList(@JsonProperty("sca")
                                                             List<JsonAdaptedStudentCourseAssociation> sca) {
-        this.courses.addAll(sca);
+        this.scas.addAll(sca);
     }
 
     /**
@@ -36,7 +37,7 @@ class JsonSerializableStudentCourseAssociationList {
      * @param source future changes to this will not affect the created {@code JsonSerializableUniqueCourseList}.
      */
     public JsonSerializableStudentCourseAssociationList(StudentCourseAssociationList source) {
-        courses.addAll(source.get().stream().map(JsonAdaptedStudentCourseAssociation::new).toList());
+        scas.addAll(source.get().stream().map(JsonAdaptedStudentCourseAssociation::new).collect(Collectors.toList()));
     }
 
     /**
@@ -46,7 +47,7 @@ class JsonSerializableStudentCourseAssociationList {
      */
     public StudentCourseAssociationList toModelType() throws IllegalValueException {
         StudentCourseAssociationList scaList = new StudentCourseAssociationList();
-        for (JsonAdaptedStudentCourseAssociation jsonAdaptedCourse : courses) {
+        for (JsonAdaptedStudentCourseAssociation jsonAdaptedCourse : scas) {
             StudentCourseAssociation sca = jsonAdaptedCourse.toModelType();
             if (scaList.has(sca)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_SCA);
