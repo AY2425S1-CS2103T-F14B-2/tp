@@ -17,14 +17,14 @@ import tahub.contacts.model.studentcourseassociation.StudentCourseAssociationLis
 /**
  * A class to access SCA list data stored as a json file on the hard disk.
  */
-public class JsonSerializableStudentCourseAssociationListStorage {
+public class JsonStudentCourseAssociationListStorage {
 
     private static final Logger logger =
-            LogsCenter.getLogger(JsonSerializableStudentCourseAssociationListStorage.class);
+            LogsCenter.getLogger(JsonStudentCourseAssociationListStorage.class);
 
     private Path filePath;
 
-    public JsonSerializableStudentCourseAssociationListStorage(Path filePath) {
+    public JsonStudentCourseAssociationListStorage(Path filePath) {
         this.filePath = filePath;
     }
 
@@ -75,4 +75,5 @@ public class JsonSerializableStudentCourseAssociationListStorage {
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableStudentCourseAssociationList(addressBook), filePath);
     }
+
 }
