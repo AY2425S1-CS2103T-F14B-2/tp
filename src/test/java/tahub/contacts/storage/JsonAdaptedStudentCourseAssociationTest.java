@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 
 import tahub.contacts.commons.exceptions.IllegalValueException;
 import tahub.contacts.model.studentcourseassociation.StudentCourseAssociation;
-import tahub.contacts.testutil.AttendanceExamples;
 
 
 /**
@@ -44,9 +43,6 @@ public class JsonAdaptedStudentCourseAssociationTest {
     private static final String VALID_TUTORIAL_ID = "T22";
     private static final String INVALID_TUTORIAL_ID = "XMAS";
 
-    private static final JsonAdaptedAttendance VALID_ATTENDANCE = new JsonAdaptedAttendance(
-            AttendanceExamples.ATTENDANCE_EXAMPLE_1);
-
     @Test
     void toModelType_validStudentCourseAssociation_noExceptionThrown() {
         JsonAdaptedPerson validPerson = new JsonAdaptedPerson(VALID_MATRICULATION_NUMBER, VALID_NAME, VALID_PHONE,
@@ -55,19 +51,19 @@ public class JsonAdaptedStudentCourseAssociationTest {
         JsonAdaptedTutorial validTutorial = new JsonAdaptedTutorial(VALID_TUTORIAL_ID, validCourse);
 
         JsonAdaptedStudentCourseAssociation adapter = new JsonAdaptedStudentCourseAssociation(validPerson,
-                validCourse, validTutorial, VALID_ATTENDANCE);
+                validCourse, validTutorial);
         assertDoesNotThrow(() -> adapter.toModelType());
     }
 
     @Test
     void toModelType_invalidStudent_throwsIllegalValueException() {
-        JsonAdaptedPerson invalidPerson = new JsonAdaptedPerson(INVALID_MATRICULATION_NUMBER, VALID_NAME, VALID_PHONE,
+        JsonAdaptedPerson validPerson = new JsonAdaptedPerson(VALID_MATRICULATION_NUMBER, VALID_NAME, VALID_PHONE,
                 VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
         JsonAdaptedCourse validCourse = new JsonAdaptedCourse(VALID_COURSE_CODE, VALID_COURSE_NAME);
-        JsonAdaptedTutorial validTutorial = new JsonAdaptedTutorial(VALID_TUTORIAL_ID, validCourse);
+        JsonAdaptedTutorial invalidTutorial = new JsonAdaptedTutorial(INVALID_TUTORIAL_ID, validCourse);
 
-        JsonAdaptedStudentCourseAssociation adapter = new JsonAdaptedStudentCourseAssociation(invalidPerson,
-                validCourse, validTutorial, VALID_ATTENDANCE);
+        JsonAdaptedStudentCourseAssociation adapter = new JsonAdaptedStudentCourseAssociation(validPerson,
+                validCourse, invalidTutorial);
         assertThrows(IllegalValueException.class, adapter::toModelType);
     }
 
@@ -79,7 +75,7 @@ public class JsonAdaptedStudentCourseAssociationTest {
         JsonAdaptedTutorial validTutorial = new JsonAdaptedTutorial(VALID_TUTORIAL_ID, invalidCourse);
 
         JsonAdaptedStudentCourseAssociation adapter = new JsonAdaptedStudentCourseAssociation(validPerson,
-                invalidCourse, validTutorial, VALID_ATTENDANCE);
+                invalidCourse, validTutorial);
         assertThrows(IllegalValueException.class, adapter::toModelType);
     }
 
@@ -91,7 +87,7 @@ public class JsonAdaptedStudentCourseAssociationTest {
         JsonAdaptedTutorial invalidTutorial = new JsonAdaptedTutorial(INVALID_TUTORIAL_ID, valid);
 
         JsonAdaptedStudentCourseAssociation adapter = new JsonAdaptedStudentCourseAssociation(validPerson,
-                valid, invalidTutorial, VALID_ATTENDANCE);
+                valid, invalidTutorial);
         assertThrows(IllegalValueException.class, adapter::toModelType);
     }
 
@@ -111,8 +107,7 @@ public class JsonAdaptedStudentCourseAssociationTest {
     @Test
     void toModelType_nullInputs_throwsIllegalValueException() {
         assertThrows(IllegalValueException.class, () -> {
-            new JsonAdaptedStudentCourseAssociation(null, null, null, null)
-                    .toModelType();
+            new JsonAdaptedStudentCourseAssociation(null, null, null).toModelType();
         });
     }
 
@@ -124,7 +119,7 @@ public class JsonAdaptedStudentCourseAssociationTest {
         JsonAdaptedTutorial validTutorial = new JsonAdaptedTutorial(VALID_TUTORIAL_ID, validCourse);
         // valid inputs so should not throw exception
         JsonAdaptedStudentCourseAssociation adapter = new JsonAdaptedStudentCourseAssociation(validPerson,
-                validCourse, validTutorial, VALID_ATTENDANCE);
+                validCourse, validTutorial);
         assertDoesNotThrow(() -> {
             StudentCourseAssociation sca = adapter.toModelType();
             assertEquals(VALID_MATRICULATION_NUMBER, sca.getStudent().getMatricNumber().toString());
@@ -140,7 +135,7 @@ public class JsonAdaptedStudentCourseAssociationTest {
         JsonAdaptedCourse validCourse = new JsonAdaptedCourse(INVALID_COURSE_CODE, VALID_COURSE_NAME);
 
         JsonAdaptedStudentCourseAssociation adapter = new JsonAdaptedStudentCourseAssociation(validPerson,
-                validCourse, null, VALID_ATTENDANCE);
+                validCourse, null);
         assertThrows(IllegalValueException.class, adapter::toModelType);
     }
 
@@ -152,31 +147,7 @@ public class JsonAdaptedStudentCourseAssociationTest {
         JsonAdaptedTutorial validTutorial = new JsonAdaptedTutorial(VALID_TUTORIAL_ID, invalidCourse);
 
         JsonAdaptedStudentCourseAssociation adapter = new JsonAdaptedStudentCourseAssociation(validPerson,
-                invalidCourse, null, VALID_ATTENDANCE);
-        assertThrows(IllegalValueException.class, adapter::toModelType);
-    }
-
-    @Test
-    void toModelType_invalidStudentAllFields_throwsIllegalValueException() {
-        JsonAdaptedPerson invalidPerson = new JsonAdaptedPerson(INVALID_MATRICULATION_NUMBER, INVALID_NAME,
-                INVALID_PHONE, INVALID_EMAIL, INVALID_ADDRESS, VALID_TAGS);
-        JsonAdaptedCourse validCourse = new JsonAdaptedCourse(VALID_COURSE_CODE, VALID_COURSE_NAME);
-        JsonAdaptedTutorial validTutorial = new JsonAdaptedTutorial(VALID_TUTORIAL_ID, validCourse);
-
-        JsonAdaptedStudentCourseAssociation adapter = new JsonAdaptedStudentCourseAssociation(invalidPerson,
-                validCourse, validTutorial, VALID_ATTENDANCE);
-        assertThrows(IllegalValueException.class, adapter::toModelType);
-    }
-
-    @Test
-    void toModelType_nullAttendance_throwsIllegalValueException() {
-        JsonAdaptedPerson validPerson = new JsonAdaptedPerson(VALID_MATRICULATION_NUMBER, VALID_NAME, VALID_PHONE,
-                VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        JsonAdaptedCourse validCourse = new JsonAdaptedCourse(VALID_COURSE_CODE, VALID_COURSE_NAME);
-        JsonAdaptedTutorial validTutorial = new JsonAdaptedTutorial(VALID_TUTORIAL_ID, validCourse);
-
-        JsonAdaptedStudentCourseAssociation adapter = new JsonAdaptedStudentCourseAssociation(validPerson,
-                validCourse, validTutorial, null);
+                invalidCourse, null);
         assertThrows(IllegalValueException.class, adapter::toModelType);
     }
 }
