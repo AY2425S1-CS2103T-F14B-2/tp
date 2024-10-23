@@ -7,8 +7,7 @@ import tahub.contacts.logic.Messages;
 import tahub.contacts.logic.commands.exceptions.CommandException;
 import tahub.contacts.model.Model;
 import tahub.contacts.model.course.Course;
-import tahub.contacts.model.studentcourseassociation.StudentCourseAssociation;
-import tahub.contacts.model.tutorial.Tutorial;
+//import tahub.contacts.model.studentcourseassociation.StudentCourseAssociation;
 
 /**
  * Adds a course to the course book.
@@ -42,8 +41,8 @@ public class CourseCommand extends Command {
         }
 
         model.addCourse(toAdd);
-       // model.addSca(new StudentCourseAssociation(model.getFilteredPersonList().get(0), toAdd,
-         //       new Tutorial("T01", toAdd)));
+        // model.addSca(new StudentCourseAssociation(
+        // model.getFilteredPersonList().get(0), toAdd, new Tutorial("T01", toAdd)));
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
