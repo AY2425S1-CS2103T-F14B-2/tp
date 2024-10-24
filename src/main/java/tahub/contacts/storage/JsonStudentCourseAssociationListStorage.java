@@ -39,10 +39,8 @@ public class JsonStudentCourseAssociationListStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    public Optional<StudentCourseAssociationList> readScaList(
-            Path filePath,
-            ReadOnlyAddressBook addressBook,
-            UniqueCourseList courseList) throws DataLoadingException {
+    public Optional<StudentCourseAssociationList> readScaList(Path filePath, ReadOnlyAddressBook addressBook,
+                                                              UniqueCourseList courseList) throws DataLoadingException {
         requireNonNull(filePath);
         requireNonNull(addressBook);
         requireNonNull(courseList);

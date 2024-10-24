@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import tahub.contacts.commons.exceptions.IllegalValueException;
-import tahub.contacts.model.Model;
 import tahub.contacts.model.ReadOnlyAddressBook;
 import tahub.contacts.model.course.UniqueCourseList;
 import tahub.contacts.model.studentcourseassociation.StudentCourseAssociation;
@@ -29,7 +28,8 @@ class JsonSerializableStudentCourseAssociationList {
      * Constructs a {@code JsonSerializableStudentCourseAssociationList} with the given SCAs.
      */
     @JsonCreator
-    public JsonSerializableStudentCourseAssociationList(@JsonProperty("scas") List<JsonAdaptedStudentCourseAssociation> scas) {
+    public JsonSerializableStudentCourseAssociationList(@JsonProperty("scas")
+                                                            List<JsonAdaptedStudentCourseAssociation> scas) {
         this.scas = (scas != null) ? scas : new ArrayList<>();
     }
 

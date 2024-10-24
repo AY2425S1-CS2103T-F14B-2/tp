@@ -8,8 +8,6 @@ import tahub.contacts.commons.exceptions.DataLoadingException;
 import tahub.contacts.model.ReadOnlyAddressBook;
 import tahub.contacts.model.ReadOnlyUserPrefs;
 import tahub.contacts.model.UserPrefs;
-import tahub.contacts.model.course.UniqueCourseList;
-import tahub.contacts.model.studentcourseassociation.StudentCourseAssociationList;
 
 /**
  * API of the Storage component

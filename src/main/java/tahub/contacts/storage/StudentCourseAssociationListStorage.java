@@ -16,7 +16,7 @@ public interface StudentCourseAssociationListStorage {
     Optional<StudentCourseAssociationList> readScaList() throws DataLoadingException;
 
     Optional<StudentCourseAssociationList>
-    readScaList(Path scaListFilePath, ReadOnlyAddressBook initialData, UniqueCourseList initialCourseList)
+        readScaList(Path scaListFilePath, ReadOnlyAddressBook initialData, UniqueCourseList initialCourseList)
             throws DataLoadingException;
 
     void saveScaList(StudentCourseAssociationList scaList) throws IOException;
