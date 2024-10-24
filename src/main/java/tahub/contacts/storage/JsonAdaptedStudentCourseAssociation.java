@@ -7,6 +7,7 @@ import tahub.contacts.commons.exceptions.IllegalValueException;
 import tahub.contacts.model.ReadOnlyAddressBook;
 import tahub.contacts.model.course.Attendance;
 import tahub.contacts.model.course.Course;
+import tahub.contacts.model.course.CourseCode;
 import tahub.contacts.model.course.UniqueCourseList;
 import tahub.contacts.model.grade.GradingSystem;
 import tahub.contacts.model.person.Person;
@@ -63,7 +64,7 @@ class JsonAdaptedStudentCourseAssociation {
     public StudentCourseAssociation toModelType(ReadOnlyAddressBook addressBook,
                                                 UniqueCourseList courseList) throws IllegalValueException {
         final Person student = addressBook.getPersonByMatricNumber(matricNumber);
-        final Course course = courseList.getCourseByCode(courseCode);
+        final Course course = courseList.getCourseWithCourseCode(new CourseCode(courseCode));
 
         // Checks if the student is valid
         if (student == null) {
