@@ -64,13 +64,18 @@ class JsonAdaptedStudentCourseAssociation {
     public StudentCourseAssociation toModelType(ReadOnlyAddressBook addressBook,
                                                 UniqueCourseList courseList) throws IllegalValueException {
         final Person student = addressBook.getPersonByMatricNumber(matricNumber);
-        final Course course = courseList.getCourseWithCourseCode(new CourseCode(courseCode));
 
         // Checks if the student is valid
         if (student == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     JsonAdaptedPerson.class.getSimpleName()));
         }
+
+        if (!CourseCode.isValidCourseCode(courseCode)) {
+            throw new IllegalValueException(CourseCode.MESSAGE_CONSTRAINTS);
+        }
+
+        final Course course = courseList.getCourseWithCourseCode(new CourseCode(courseCode));
 
         // Checks if the course is valid
         if (course == null) {

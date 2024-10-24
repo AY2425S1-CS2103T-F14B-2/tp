@@ -83,11 +83,16 @@ public class JsonAdaptedStudentCourseAssociationTest {
 
         stubCourseList = new UniqueCourseList() {
             @Override
-            public Course getCourseByCode(String courseCode) {
-                if (VALID_COURSE_CODE.equals(courseCode)) {
+            public Course getCourseWithCourseCode(CourseCode courseCode) {
+                if (VALID_COURSE_CODE.equals(courseCode.toString())) {
                     return validCourse;
                 }
                 return null;
+            }
+
+            @Override
+            public ObservableList<Course> asUnmodifiableObservableList() {
+                return (ObservableList<Course>) List.of(validCourse);
             }
         };
     }
