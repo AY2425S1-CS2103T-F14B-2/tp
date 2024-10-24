@@ -168,4 +168,13 @@ public class UniqueCourseList implements Iterable<Course> {
         }
         return true;
     }
+
+    public Course getCourseByCode(String courseCode) {
+        for (Course course : internalList) {
+            if (course.courseCode.equals(courseCode)) {
+                return course;
+            }
+        }
+        return null;
+    }
 }

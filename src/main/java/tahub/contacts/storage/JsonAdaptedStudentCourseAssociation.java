@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tahub.contacts.commons.exceptions.IllegalValueException;
+import tahub.contacts.model.ReadOnlyAddressBook;
 import tahub.contacts.model.course.Attendance;
 import tahub.contacts.model.course.Course;
+import tahub.contacts.model.course.UniqueCourseList;
 import tahub.contacts.model.grade.GradingSystem;
 import tahub.contacts.model.person.Person;
 import tahub.contacts.model.studentcourseassociation.StudentCourseAssociation;
@@ -18,8 +20,8 @@ import tahub.contacts.model.tutorial.Tutorial;
 class JsonAdaptedStudentCourseAssociation {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "StudentCourseAssociation's %s field is missing!";
-    private final JsonAdaptedPerson student;
-    private final JsonAdaptedCourse course;
+    private final String matricNumber;
+    private final String courseCode;
     private final JsonAdaptedTutorial tutorial;
     private final JsonAdaptedAttendance attendance;
 
@@ -29,12 +31,12 @@ class JsonAdaptedStudentCourseAssociation {
      */
     @JsonCreator
     public JsonAdaptedStudentCourseAssociation(
-            @JsonProperty("student") JsonAdaptedPerson student,
-            @JsonProperty("course") JsonAdaptedCourse course,
+            @JsonProperty("matricNumber") String matricNumber,
+            @JsonProperty("courseCode") String courseCode,
             @JsonProperty("tutorial") JsonAdaptedTutorial tutorial,
             @JsonProperty("attendance") JsonAdaptedAttendance attendance) {
-        this.student = student;
-        this.course = course;
+        this.matricNumber = matricNumber;
+        this.courseCode = courseCode;
         this.tutorial = tutorial;
         this.attendance = attendance;
     }
@@ -44,8 +46,8 @@ class JsonAdaptedStudentCourseAssociation {
      *
      */
     public JsonAdaptedStudentCourseAssociation(StudentCourseAssociation source) {
-        this.student = new JsonAdaptedPerson(source.getStudent());
-        this.course = new JsonAdaptedCourse(source.getCourse());
+        this.matricNumber = String.valueOf(source.getStudent().getMatricNumber());
+        this.courseCode = source.getCourse().courseCode;
         this.tutorial = new JsonAdaptedTutorial(source.getTutorial());
         this.attendance = new JsonAdaptedAttendance(source.getAttendance());
     }
@@ -58,21 +60,22 @@ class JsonAdaptedStudentCourseAssociation {
      * @return a new StudentCourseAssociation object representing the JSON data
      * @throws IllegalValueException if the student, course, or tutorial fields are invalid
      */
-    public StudentCourseAssociation toModelType() throws IllegalValueException {
+    public StudentCourseAssociation toModelType(ReadOnlyAddressBook addressBook,
+                                                UniqueCourseList courseList) throws IllegalValueException {
+        final Person student = addressBook.getPersonByMatricNumber(matricNumber);
+        final Course course = courseList.getCourseByCode(courseCode);
 
         // Checks if the student is valid
-        if (this.student == null) {
+        if (student == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     JsonAdaptedPerson.class.getSimpleName()));
         }
-        final Person studentModel = this.student.toModelType();
 
         // Checks if the course is valid
-        if (this.course == null) {
+        if (course == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     JsonAdaptedCourse.class.getSimpleName()));
         }
-        final Course courseModel = this.course.toModelType();
 
         // Checks if the tutorial is valid
         if (this.tutorial == null) {
@@ -88,7 +91,7 @@ class JsonAdaptedStudentCourseAssociation {
         }
         final Attendance attendanceModel = this.attendance.toModelType();
 
-        return new StudentCourseAssociation(studentModel, courseModel, tutorialModel,
+        return new StudentCourseAssociation(student, course, tutorialModel,
                 new GradingSystem(), attendanceModel);
     }
 }

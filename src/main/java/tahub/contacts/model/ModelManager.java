@@ -22,6 +22,7 @@ import tahub.contacts.model.studentcourseassociation.StudentCourseAssociationLis
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    public static Model model;
 
     private final AddressBook addressBook;
     private final StudentCourseAssociationList scaList;
