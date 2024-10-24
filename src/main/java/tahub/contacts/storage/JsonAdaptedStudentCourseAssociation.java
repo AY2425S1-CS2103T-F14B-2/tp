@@ -47,7 +47,7 @@ class JsonAdaptedStudentCourseAssociation {
      */
     public JsonAdaptedStudentCourseAssociation(StudentCourseAssociation source) {
         this.matricNumber = String.valueOf(source.getStudent().getMatricNumber());
-        this.courseCode = source.getCourse().courseCode;
+        this.courseCode = String.valueOf(source.getCourse().courseCode);
         this.tutorial = new JsonAdaptedTutorial(source.getTutorial());
         this.attendance = new JsonAdaptedAttendance(source.getAttendance());
     }

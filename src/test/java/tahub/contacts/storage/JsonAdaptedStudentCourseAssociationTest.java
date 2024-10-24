@@ -15,6 +15,8 @@ import javafx.collections.ObservableList;
 import tahub.contacts.commons.exceptions.IllegalValueException;
 import tahub.contacts.model.ReadOnlyAddressBook;
 import tahub.contacts.model.course.Course;
+import tahub.contacts.model.course.CourseCode;
+import tahub.contacts.model.course.CourseName;
 import tahub.contacts.model.course.UniqueCourseList;
 import tahub.contacts.model.grade.GradingSystem;
 import tahub.contacts.model.person.Person;
@@ -58,7 +60,7 @@ public class JsonAdaptedStudentCourseAssociationTest {
     @BeforeEach
     void setUp() {
         validPerson = BENSON;
-        validCourse = new Course(VALID_COURSE_CODE, VALID_COURSE_NAME);
+        validCourse = new Course(new CourseCode(VALID_COURSE_CODE), new CourseName(VALID_COURSE_NAME));
 
         stubAddressBook = new ReadOnlyAddressBook() {
             /**
@@ -153,7 +155,7 @@ public class JsonAdaptedStudentCourseAssociationTest {
         // valid inputs so should not throw exception
         JsonAdaptedStudentCourseAssociation adapter = new JsonAdaptedStudentCourseAssociation(
                 String.valueOf(validPerson.toModelType().getMatricNumber()),
-                validCourse.toModelType().courseCode, validTutorial, VALID_ATTENDANCE);
+                String.valueOf(validCourse.toModelType().courseCode), validTutorial, VALID_ATTENDANCE);
         assertDoesNotThrow(() -> {
             StudentCourseAssociation sca = adapter.toModelType(stubAddressBook, stubCourseList);
             assertEquals(VALID_MATRICULATION_NUMBER, sca.getStudent().getMatricNumber().toString());
@@ -169,7 +171,7 @@ public class JsonAdaptedStudentCourseAssociationTest {
         JsonAdaptedCourse validCourse = new JsonAdaptedCourse(VALID_COURSE_CODE, VALID_COURSE_NAME);
         JsonAdaptedStudentCourseAssociation adapter = new JsonAdaptedStudentCourseAssociation(
                 String.valueOf(validPerson.toModelType().getMatricNumber()),
-                validCourse.toModelType().courseCode, null, VALID_ATTENDANCE);
+                String.valueOf(validCourse.toModelType().courseCode), null, VALID_ATTENDANCE);
         assertThrows(IllegalValueException.class, () -> adapter.toModelType(stubAddressBook, stubCourseList));
     }
 
@@ -191,7 +193,7 @@ public class JsonAdaptedStudentCourseAssociationTest {
 
         JsonAdaptedStudentCourseAssociation adapter = new JsonAdaptedStudentCourseAssociation(
                 INVALID_MATRICULATION_NUMBER,
-                validCourse.toModelType().courseCode, validTutorial, VALID_ATTENDANCE);
+                String.valueOf(validCourse.toModelType().courseCode), validTutorial, VALID_ATTENDANCE);
         assertThrows(IllegalValueException.class, () -> adapter.toModelType(stubAddressBook, stubCourseList));
     }
 
@@ -204,7 +206,7 @@ public class JsonAdaptedStudentCourseAssociationTest {
 
         JsonAdaptedStudentCourseAssociation adapter = new JsonAdaptedStudentCourseAssociation(
                 String.valueOf(validPerson.toModelType().getMatricNumber()),
-                validCourse.toModelType().courseCode, validTutorial, null);
+                String.valueOf(validCourse.toModelType().courseCode), validTutorial, null);
         assertThrows(IllegalValueException.class, () -> adapter.toModelType(stubAddressBook, stubCourseList));
     }
 }
