@@ -13,7 +13,7 @@ import tahub.contacts.model.course.Course;
  */
 public class CourseCommand extends Command {
 
-    public static final String COMMAND_WORD = "add-course";
+    public static final String COMMAND_WORD = "course";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a course to the course book. "
             + "eg course c/CS2103T n/Software Engineering";
