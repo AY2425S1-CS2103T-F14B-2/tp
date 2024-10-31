@@ -13,10 +13,10 @@ import tahub.contacts.model.course.Course;
  */
 public class CourseCommand extends Command {
 
-    public static final String COMMAND_WORD = "course";
+    public static final String COMMAND_WORD = "add-course";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a course to the course book. "
-            + "eg course c/CS2103T n/Software Engineering";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a course to the course book. \n"
+            + "eg add-course c/CS2103T n/Software Engineering";
 
     public static final String MESSAGE_SUCCESS = "New course added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This course already exists in the course book";
