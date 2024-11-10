@@ -118,6 +118,7 @@
         "main-commands": "Main Commands",
         "student-commands": "Student Commands",
         "course-commands": "Course Commands",
+        "enrollment-commands": "Enrollment Commands",
         "attendance-commands": "Attendance Commands",
         "data": "Data",
         "future": "Future",
