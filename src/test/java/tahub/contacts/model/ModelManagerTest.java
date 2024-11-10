@@ -61,7 +61,6 @@ public class ModelManagerTest {
 
     @Test
     public void addCourse_updatesFilteredPersonList() {
-        
         modelManager.addPerson(ALICE); // Ensure there is at least one person in the address book
         modelManager.addCourse(course);
         assertFalse(modelManager.getFilteredPersonList().isEmpty());
@@ -290,7 +289,6 @@ public class ModelManagerTest {
     @Test
     public void setCourseList_validCourseList_setsCourseList() {
         UniqueCourseList courseList = new UniqueCourseList();
-        
         courseList.addCourse(course);
         modelManager.setCourseList(courseList);
         assertTrue(modelManager.hasCourse(course));
@@ -342,7 +340,6 @@ public class ModelManagerTest {
         Person student = new Person(new MatriculationNumber("A1234567X"),
                 new Name("Alice"), new Phone("12345678"), new Email("student1@example.com"),
                 new Address("123 Street"), new HashSet<>());
-        
         Tutorial tutorial = new Tutorial("T01", course);
         StudentCourseAssociation sca = new StudentCourseAssociation(student, course, tutorial);
         modelManager.addSca(sca);
@@ -375,7 +372,6 @@ public class ModelManagerTest {
         Person student = new Person(new MatriculationNumber("A1234567X"),
                 new Name("Alice"), new Phone("12345678"), new Email("student1@example.com"),
                 new Address("123 Street"), new HashSet<>());
-        
         Tutorial tutorial1 = new Tutorial("T01", course);
         Tutorial tutorial2 = new Tutorial("T02", course);
         StudentCourseAssociation sca1 = new StudentCourseAssociation(student, course, tutorial1);
