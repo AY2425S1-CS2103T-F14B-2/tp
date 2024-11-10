@@ -49,6 +49,14 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void addCourse_updatesFilteredPersonList() {
+        Course course = new Course(new CourseCode("CS1010"), new CourseName("Introduction to CS"));
+        modelManager.addPerson(ALICE); // Ensure there is at least one person in the address book
+        modelManager.addCourse(course);
+        assertFalse(modelManager.getFilteredPersonList().isEmpty());
+    }
+
+    @Test
     public void setUserPrefs_nullUserPrefs_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setUserPrefs(null));
     }
