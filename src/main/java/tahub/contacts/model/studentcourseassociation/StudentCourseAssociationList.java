@@ -228,7 +228,7 @@ public class StudentCourseAssociationList implements Iterable<StudentCourseAssoc
         }
     }
 
-    /*
+    /**
      * Removes zero or more SCAs containing the specified course.
      */
     public void remove(Course course) {
