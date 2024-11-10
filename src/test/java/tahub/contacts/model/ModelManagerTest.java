@@ -47,7 +47,7 @@ public class ModelManagerTest {
     public void setUp() {
         sca = new StudentCourseAssociation(ALICE, new Course(new CourseCode("CS1010"),
                 new CourseName("Introduction to CS")), new Tutorial("T01", new Course(new CourseCode("CS1010"),
-                new CourseName("Introduction to CS"))));
+                    new CourseName("Introduction to CS"))));
         course = new Course(new CourseCode("CS1010"), new CourseName("Introduction to CS"));
     }
 
