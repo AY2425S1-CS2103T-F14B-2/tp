@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import tahub.contacts.commons.core.GuiSettings;
@@ -38,7 +39,17 @@ import tahub.contacts.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
 
+    private Course course;
     private ModelManager modelManager = new ModelManager();
+    private StudentCourseAssociation sca;
+
+    @BeforeEach
+    public void setUp() {
+        sca = new StudentCourseAssociation(ALICE, new Course(new CourseCode("CS1010"),
+                new CourseName("Introduction to CS")), new Tutorial("T01", new Course(new CourseCode("CS1010"),
+                new CourseName("Introduction to CS"))));
+        course = new Course(new CourseCode("CS1010"), new CourseName("Introduction to CS"));
+    }
 
     @Test
     public void constructor() {
@@ -50,7 +61,7 @@ public class ModelManagerTest {
 
     @Test
     public void addCourse_updatesFilteredPersonList() {
-        Course course = new Course(new CourseCode("CS1010"), new CourseName("Introduction to CS"));
+        
         modelManager.addPerson(ALICE); // Ensure there is at least one person in the address book
         modelManager.addCourse(course);
         assertFalse(modelManager.getFilteredPersonList().isEmpty());
@@ -141,20 +152,17 @@ public class ModelManagerTest {
 
     @Test
     public void hasCourse_courseNotInCourseList_returnsFalse() {
-        Course course = new Course(new CourseCode("CS1010"), new CourseName("Introduction to CS"));
         assertFalse(modelManager.hasCourse(course));
     }
 
     @Test
     public void hasCourse_courseInCourseList_returnsTrue() {
-        Course course = new Course(new CourseCode("CS1010"), new CourseName("Introduction to CS"));
         modelManager.addCourse(course);
         assertTrue(modelManager.hasCourse(course));
     }
 
     @Test
     public void deleteCourse_courseInCourseList_deletesCourse() {
-        Course course = new Course(new CourseCode("CS1010"), new CourseName("Introduction to CS"));
         modelManager.addCourse(course);
         modelManager.deleteCourse(course);
         assertFalse(modelManager.hasCourse(course));
@@ -162,7 +170,6 @@ public class ModelManagerTest {
 
     @Test
     public void addCourse_validCourse_addsCourse() {
-        Course course = new Course(new CourseCode("CS1010"), new CourseName("Introduction to CS"));
         modelManager.addCourse(course);
         assertTrue(modelManager.hasCourse(course));
     }
@@ -193,26 +200,17 @@ public class ModelManagerTest {
 
     @Test
     public void hasSca_scaNotInScaList_returnsFalse() {
-        StudentCourseAssociation sca = new StudentCourseAssociation(ALICE, new Course(new CourseCode("CS1010"),
-                new CourseName("Introduction to CS")), new Tutorial("T01", new Course(new CourseCode("CS1010"),
-                    new CourseName("Introduction to CS"))));
         assertFalse(modelManager.hasSca(sca));
     }
 
     @Test
     public void hasSca_scaInScaList_returnsTrue() {
-        StudentCourseAssociation sca = new StudentCourseAssociation(ALICE, new Course(new CourseCode("CS1010"),
-                new CourseName("Introduction to CS")), new Tutorial("T01", new Course(new CourseCode("CS1010"),
-                    new CourseName("Introduction to CS"))));
         modelManager.addSca(sca);
         assertTrue(modelManager.hasSca(sca));
     }
 
     @Test
     public void deleteSca_scaInScaList_deletesSca() {
-        StudentCourseAssociation sca = new StudentCourseAssociation(ALICE, new Course(new CourseCode("CS1010"),
-                new CourseName("Introduction to CS")), new Tutorial("T01", new Course(new CourseCode("CS1010"),
-                    new CourseName("Introduction to CS"))));
         modelManager.addSca(sca);
         modelManager.deleteSca(sca);
         assertFalse(modelManager.hasSca(sca));
@@ -220,18 +218,12 @@ public class ModelManagerTest {
 
     @Test
     public void addSca_validSca_addsSca() {
-        StudentCourseAssociation sca = new StudentCourseAssociation(ALICE, new Course(new CourseCode("CS1010"),
-                new CourseName("Introduction to CS")), new Tutorial("T01", new Course(new CourseCode("CS1010"),
-                    new CourseName("Introduction to CS"))));
         modelManager.addSca(sca);
         assertTrue(modelManager.hasSca(sca));
     }
 
     @Test
     public void getScaList_returnsCorrectScaList() {
-        StudentCourseAssociation sca = new StudentCourseAssociation(ALICE, new Course(new CourseCode("CS1010"),
-                new CourseName("Introduction to CS")), new Tutorial("T01", new Course(new CourseCode("CS1010"),
-                    new CourseName("Introduction to CS"))));
         modelManager.addSca(sca);
         StudentCourseAssociationList scaList = modelManager.getScaList();
         assertTrue(scaList.contains(sca));
@@ -298,7 +290,7 @@ public class ModelManagerTest {
     @Test
     public void setCourseList_validCourseList_setsCourseList() {
         UniqueCourseList courseList = new UniqueCourseList();
-        Course course = new Course(new CourseCode("CS1010"), new CourseName("Introduction to CS"));
+        
         courseList.addCourse(course);
         modelManager.setCourseList(courseList);
         assertTrue(modelManager.hasCourse(course));
@@ -350,7 +342,7 @@ public class ModelManagerTest {
         Person student = new Person(new MatriculationNumber("A1234567X"),
                 new Name("Alice"), new Phone("12345678"), new Email("student1@example.com"),
                 new Address("123 Street"), new HashSet<>());
-        Course course = new Course(new CourseCode("CS1010"), new CourseName("Introduction to CS"));
+        
         Tutorial tutorial = new Tutorial("T01", course);
         StudentCourseAssociation sca = new StudentCourseAssociation(student, course, tutorial);
         modelManager.addSca(sca);
@@ -383,7 +375,7 @@ public class ModelManagerTest {
         Person student = new Person(new MatriculationNumber("A1234567X"),
                 new Name("Alice"), new Phone("12345678"), new Email("student1@example.com"),
                 new Address("123 Street"), new HashSet<>());
-        Course course = new Course(new CourseCode("CS1010"), new CourseName("Introduction to CS"));
+        
         Tutorial tutorial1 = new Tutorial("T01", course);
         Tutorial tutorial2 = new Tutorial("T02", course);
         StudentCourseAssociation sca1 = new StudentCourseAssociation(student, course, tutorial1);
