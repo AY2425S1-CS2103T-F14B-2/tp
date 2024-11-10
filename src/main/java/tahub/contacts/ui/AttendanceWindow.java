@@ -11,8 +11,6 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import tahub.contacts.commons.core.LogsCenter;
 import tahub.contacts.logic.Logic;
-import tahub.contacts.logic.commands.attend.AttendAbsentCommand;
-import tahub.contacts.logic.commands.attend.AttendPresentCommand;
 import tahub.contacts.logic.commands.exceptions.CommandException;
 import tahub.contacts.logic.parser.exceptions.ParseException;
 import tahub.contacts.model.course.AttendanceSession;
