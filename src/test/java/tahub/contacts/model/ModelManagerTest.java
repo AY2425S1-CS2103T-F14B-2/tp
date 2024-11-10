@@ -168,6 +168,76 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getScaListFilePath_returnsCorrectPath() {
+        Path path = Paths.get("sca/list/file/path");
+        modelManager.setScaListFilePath(path);
+        assertEquals(path, modelManager.getScaListFilePath());
+    }
+
+    @Test
+    public void setScaListFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setScaListFilePath(null));
+    }
+
+    @Test
+    public void setScaListFilePath_validPath_setsScaListFilePath() {
+        Path path = Paths.get("sca/list/file/path");
+        modelManager.setScaListFilePath(path);
+        assertEquals(path, modelManager.getScaListFilePath());
+    }
+
+    @Test
+    public void hasSca_nullSca_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasSca(null));
+    }
+
+    @Test
+    public void hasSca_scaNotInScaList_returnsFalse() {
+        StudentCourseAssociation sca = new StudentCourseAssociation(ALICE, new Course(new CourseCode("CS1010"),
+                new CourseName("Introduction to CS")), new Tutorial("T01", new Course(new CourseCode("CS1010"),
+                    new CourseName("Introduction to CS"))));
+        assertFalse(modelManager.hasSca(sca));
+    }
+
+    @Test
+    public void hasSca_scaInScaList_returnsTrue() {
+        StudentCourseAssociation sca = new StudentCourseAssociation(ALICE, new Course(new CourseCode("CS1010"),
+                new CourseName("Introduction to CS")), new Tutorial("T01", new Course(new CourseCode("CS1010"),
+                    new CourseName("Introduction to CS"))));
+        modelManager.addSca(sca);
+        assertTrue(modelManager.hasSca(sca));
+    }
+
+    @Test
+    public void deleteSca_scaInScaList_deletesSca() {
+        StudentCourseAssociation sca = new StudentCourseAssociation(ALICE, new Course(new CourseCode("CS1010"),
+                new CourseName("Introduction to CS")), new Tutorial("T01", new Course(new CourseCode("CS1010"),
+                    new CourseName("Introduction to CS"))));
+        modelManager.addSca(sca);
+        modelManager.deleteSca(sca);
+        assertFalse(modelManager.hasSca(sca));
+    }
+
+    @Test
+    public void addSca_validSca_addsSca() {
+        StudentCourseAssociation sca = new StudentCourseAssociation(ALICE, new Course(new CourseCode("CS1010"),
+                new CourseName("Introduction to CS")), new Tutorial("T01", new Course(new CourseCode("CS1010"),
+                    new CourseName("Introduction to CS"))));
+        modelManager.addSca(sca);
+        assertTrue(modelManager.hasSca(sca));
+    }
+
+    @Test
+    public void getScaList_returnsCorrectScaList() {
+        StudentCourseAssociation sca = new StudentCourseAssociation(ALICE, new Course(new CourseCode("CS1010"),
+                new CourseName("Introduction to CS")), new Tutorial("T01", new Course(new CourseCode("CS1010"),
+                    new CourseName("Introduction to CS"))));
+        modelManager.addSca(sca);
+        StudentCourseAssociationList scaList = modelManager.getScaList();
+        assertTrue(scaList.contains(sca));
+    }
+
+    @Test
     public void setCourse_nullTargetCourse_throwsNullPointerException() {
         Course course = new Course(new CourseCode("CS1010"), new CourseName("Programming Methodology"));
         Assertions.assertThrows(NullPointerException.class, () -> modelManager.setCourse(null, course));
