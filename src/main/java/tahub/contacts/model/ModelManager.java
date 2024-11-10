@@ -110,6 +110,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteCourse(Course target) {
         courseList.remove(target);
+        scaList.remove(target);
     }
 
     @Override
