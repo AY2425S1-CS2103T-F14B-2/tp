@@ -138,7 +138,7 @@ The `Model` component,
 
 API: [`Course.java`](https://github.com/AY2425S1-CS2103T-F14B-2/tp/tree/master/src/main/java/tahub/contacts/model/course/Course.java)
 
-<puml src="diagrams/CourseClassDiagram.puml" width="550" />
+<puml src="diagrams/CourseClassDiagram.puml" width="300" />
 
 The `Course` component,
 
