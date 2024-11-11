@@ -336,6 +336,8 @@ Format: **`person-delete m/MATRICULATION_NUMBER​​`**
 
 <div style="page-break-after: always;"></div>
 
+<a name="course-commands">
+
 ### Course Commands
 
 <box type="warning">
@@ -373,7 +375,7 @@ Format: **`course-edit c/COURSE_CODE n/COURSE_NAME`**
 </md></box>
 
 - `COURSE_CODE` must be an existing course code.
-- `COURSE_NAME` is the new course name and must only contain alphanumeric characters or spaces **and** follow the `COURSE_NAME` [format](#data-formats).
+- `COURSE_NAME` is the new course name and must follow the `COURSE_NAME` [format](#data-formats).
 - Note that it is **not possible** to **edit** the course code. If you want to do so, create a **new course** with the different code.
 
 | **Examples** |
