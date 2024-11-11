@@ -137,6 +137,7 @@ student contact details!
   line-breaks may be omitted when copied over to the application.
 </box>
 
+<a id="data-formats"></a>
 ### Data Formats
 
 <!-- markdownlint-disable MD013 -->
@@ -339,7 +340,7 @@ Format: **`person-delete m/MATRICULATION_NUMBER​​`**
 
 <box type="warning">
 
-Reminder: where used, course **code** and **name**, and tutorial **code** must follow the [:fa-solid-link: data format](#data-formats)!
+Reminder: where used, parameters must follow the [:fa-solid-link: data format](#data-formats)!
 </box>
 
 <a name="course-add">
@@ -351,7 +352,8 @@ Adds a course to TAHub Contacts.
 Format: **`course-add c/COURSE_CODE n/COURSE_NAME`**
 </md></box>
 
-- `COURSE_CODE` must be unique and follow the `COURSE_CODE` [:fa-solid-link: format](#data-formats)
+- `COURSE_CODE` must be unique and follow the `COURSE_CODE` [format](#data-formats)
+- `COURSE_NAME` must follow the `COURSE_NAME` [format](#data-formats)
 
 | **Examples** |
 | :--- |
@@ -406,7 +408,7 @@ The courses are stored in file `data/courselist.json` for easy import/export.
 
 <box type="important">
 
-**Caution:** If any of the fields in `courselist.json` are invalid, no courses will be loaded and the json file will be cleared.
+**Caution:** If any of the fields in `courselist.json` are invalid, no courses will be loaded and may result in data loss.
 </box>
 
 </panel>
