@@ -341,6 +341,6 @@ with(this){return _c('h2',{attrs:{"id":"appendix-planned-enhancements"}},[_c('st
 with(this){return _c('ol',[_c('li',[_v("Add a "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("course-list")]),_v(" command to list all courses so that user can view courses in the system.")]),_v(" "),_c('li',[_v("Add support for more Tutorial IDs by changing the regular expressions (i.e:"),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("VALIDATION_REGEX")]),_v(") used to accommodate other valid tutorial ids (e.g: T01A).")]),_v(" "),_c('li',[_v("Modify all commands that takes in "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("m/MATRICULATION_NUMBER")]),_v(" to allow option of accepting index of the person in the list.")])])}
 },function anonymous(
 ) {
-with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.5.3")]),_v(", generated on Mon, 11 Nov 2024, 23:17:11 GMT+8]")])])])}
+with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.5.3")]),_v(", generated on Mon, 11 Nov 2024, 23:21:13 GMT+8]")])])])}
 }];
   
