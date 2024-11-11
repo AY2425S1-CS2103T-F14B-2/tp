@@ -896,7 +896,7 @@ testers are expected to do more _exploratory_ testing.
 
 ### Adding, Deleting, and Editing courses
 
-Similar to adding, deleting and editing persons, but with courses.
+Similar to adding, deleting and editing persons, but with courses. The courses are stored in file `data/courselist.json`.
 For adding, the command is `course-add c/CS2103T n/Software Engineering`.
 For deleting, the command is `course-delete c/CS2103T`.
 For editing, the command is `course-edit c/CS2103T n/Software Engineering II`.
@@ -964,4 +964,4 @@ Expected: Attendance cleared. Success message shown.
       **Expected**: TAHub Contacts loads with empty data.
 
 ## **Appendix: Planned Enhancements**
-1. Add a `course-list` command to list all courses so that user can view courses in the system.
+1. Add a `course-list` command to list all courses so that user can view courses in the system. 
