@@ -349,9 +349,9 @@ Adds a course to TAHub Contacts.
 
 <box type="definition" seamless><md>
 Format: **`course-add c/COURSE_CODE n/COURSE_NAME`**
-
-Note: `COURSE_CODE` must be unique.
 </md></box>
+
+- `COURSE_CODE` must be unique and follow the `COURSE_CODE` [:fa-solid-link: format](#data-formats)
 
 | **Examples** |
 | :--- |
